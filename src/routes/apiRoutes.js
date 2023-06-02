@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getEmpleados, getEquipo, getEstadoEmpleado, getEstadoProyecto, getPlanificado, getPosicion, getProyectos, getTipoProyecto, getUen, getUenEmpleado } from "../controllers/apiControllers.js";
+import { getEmpleados, getEquipo, getEstadoEmpleado, getEstadoProyecto, getPlanificado, getPosicion, getProyectos, getTipoProyecto, getUen, getUenEmpleado, postUen } from "../controllers/apiControllers.js";
 
 const router = Router()
 
@@ -13,5 +13,7 @@ router.get('/posicion', getPosicion)
 router.get('/proyectos', getProyectos) 
 router.get('/tipoPro', getTipoProyecto) 
 router.get('/uenE', getUenEmpleado) 
+
+router.post('/post', postUen)
 
 export default router

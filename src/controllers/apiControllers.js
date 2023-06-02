@@ -1,5 +1,7 @@
 import { pool } from "../db.js"
 
+//CRUDS
+//GET REQUEST
 export const getUen = async (req,res) => {
     const [rows] = await pool.query("SELECT * FROM UEN")
     res.json(rows)
@@ -49,4 +51,20 @@ export const getUenEmpleado = async (req,res) => {
     const [rows] = await pool.query("SELECT * FROM Uen_Empleados")
     res.json(rows)
 }
+
+//POST REQUESTS
+export const postUen = async (req,res) => {
+    const {nombre} = req.body
+    await pool.query('INSERT INTO UEN (nombre) VALUES (?)', [nombre])
+    res.send('Post success')
+
+}
+
+
+//PUT REQUESTS
+
+
+
+//DELETE REQUEST
+
 
