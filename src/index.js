@@ -1,20 +1,6 @@
-import express from 'express'
-import indexRoutes from './routes/indexRoutes.js'
-import apiRoutes from './routes/apiRoutes.js'
-import { dirname, join } from 'path'
-import { fileURLToPath } from 'url'
-import bodyParser from "body-parser"
+//Start point file, settings for deployment
+import { PORT } from './config.js'
+import app from './app.js'
 
-const app = express()
-
-const __dirname = dirname (fileURLToPath(import.meta.url)) //absolute link, starts at src/
-
-app.set('views', join(__dirname, 'views')) //join src/views
-app.set('view engine', 'ejs') //set ejs as our view end
-app.use(bodyParser.urlencoded({ extended: false })) //middleware for post request
-
-//npm run app
-app.use(indexRoutes)
-app.use('/api', apiRoutes)
-app.listen(3000) //server port
-console.log('Server on port 3000')
+app.listen(PORT) //server port
+console.log('Server on port', PORT )
