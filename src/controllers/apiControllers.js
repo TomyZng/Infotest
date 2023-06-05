@@ -57,7 +57,7 @@ export const postUen = async (req,res) => {
     const {nombre} = req.body
     await pool.query('INSERT INTO UEN (nombre) VALUES (?)', [nombre])
     res.send('Post success')
-
+    
 }
 
 
