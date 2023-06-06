@@ -13,6 +13,7 @@ const __dirname = dirname (fileURLToPath(import.meta.url)) //absolute link, star
 app.set('views', join(__dirname, 'views')) //join src/views
 app.set('view engine', 'ejs') //set ejs as our view end
 app.use(bodyParser.urlencoded({ extended: false })) //middleware for post request
+app.use(bodyParser.json());//middleware for put/patch request
 
 //npm run app
 app.use(indexRoutes)
