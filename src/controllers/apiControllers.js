@@ -56,8 +56,7 @@ export const getUenEmpleado = async (req,res) => {
 export const getUenF = async (req,res) => {
     try {
         const {id_uen} = req.params
-        const [rows] = await pool.query
-        ("SELECT * FROM UEN WHERE id_uen = ?", [id_uen])
+        const [rows] = await pool.query("SELECT * FROM UEN WHERE id_uen = ?", [id_uen])
         
         if (rows.length <= 0) return res.status(404).json({
             message: 'Not found'
@@ -68,8 +67,6 @@ export const getUenF = async (req,res) => {
     } catch (e) {
         console.log(e)
     }
-    
-
 }
 
 //POST REQUESTS

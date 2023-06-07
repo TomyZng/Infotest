@@ -20,9 +20,6 @@
   </style>
 </head>
 <body>
-    
-
-
   <table>
     <thead>
       <tr>
@@ -30,35 +27,18 @@
         <th>Nombre</th>
       </tr>
     </thead>
-    <tbody id="data"></tbody>
+    <tbody>
+      <% data.forEach(item => { %> <!--for each data (rows) generate rows selected-->
+        <tr>
+          <td><%= item.id_uen %></td> <!--%= item object to select which data show %-->
+          <td><%= item.nombre %></td>
+        </tr>
+      <% }); %>
+    </tbody>
   </table>
 
-  <script>
-    // REQUEST API USING FETCH
-    fetch('/api/uen')
-      .then(response => response.json())
-      .then(data => {
-        const dataContainer = document.getElementById("data");
-        
-        data.forEach(item => {
-          const row = document.createElement("tr");
-          const idCell = document.createElement("td");
-          const nombreCell = document.createElement("td");
-
-          idCell.textContent = item.id_uen;
-          nombreCell.textContent = item.nombre;
-
-          row.appendChild(idCell);
-          row.appendChild(nombreCell);
-
-          dataContainer.appendChild(row);
-        });
-      })
-      .catch(error => console.error('Error al obtener los datos de la API:', error));
-  </script>
-
   <hr>
-  
+
   <form id="orden" action="/testFilter" method="GET" class="form">
     <select name="orden" id="orden">
         <option id="ascendente" value="ascendente">Ascendente</option>
@@ -69,6 +49,3 @@
 
 </body>
 </html>
-
-
-    
