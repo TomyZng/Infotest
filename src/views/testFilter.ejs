@@ -20,24 +20,59 @@
   </style>
 </head>
 <body>
-  <table>
+
+  <input type="text" id="filtroNombre" placeholder="Ingresa el nombre" filtroNombre>
+  <input type="text" id="filtroID" placeholder="Ingresa el ID" filtroID>
+
+    <table>
     <thead>
       <tr>
         <th>ID</th>
         <th>Nombre</th>
       </tr>
     </thead>
-    <tbody>
-      <% data.forEach(item => { %> <!--for each data (rows) generate rows selected-->
+    <tbody id="data">
+      <% data.forEach(item => { %>
         <tr>
-          <td><%= item.id_uen %></td> <!--%= item object to select which data show %-->
+          <td><%= item.id_uen %></td>
           <td><%= item.nombre %></td>
         </tr>
       <% }); %>
     </tbody>
   </table>
 
+
   <hr>
+  
+  <script>
+    const searchInputNombre = document.getElementById("filtroNombre");
+    const searchInputID = document.getElementById("filtroID");
+    const rows = Array.from(document.querySelectorAll("#data tr")); //Scroll and select all data from tr (table)
+
+    searchInputNombre.addEventListener("input", (e) => {
+      const value = e.target.value.toLowerCase();
+
+      rows.forEach(row => {
+        const nombreCell = row.querySelector("td:nth-child(2)");
+        const nombre = nombreCell.textContent.toLowerCase();
+        const isVisible = nombre.includes(value);
+
+        row.style.display = isVisible ? "" : "none";
+      });
+    });
+
+    searchInputID.addEventListener("input", (e) => {
+      const value = e.target.value.toLowerCase();
+
+      rows.forEach(row => {
+        const idCell = row.querySelector("td:nth-child(1)");
+        const id = idCell.textContent.toLowerCase();
+        const isVisible = id.includes(value);
+
+        row.style.display = isVisible ? "" : "none";
+      });
+    });
+  </script>
 
   <form id="orden" action="/testFilter" method="GET" class="form">
     <select name="orden" id="orden">

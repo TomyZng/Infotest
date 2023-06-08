@@ -20,10 +20,11 @@
   </style>
 </head>
 <body>
-    
 
-
+  <input type="text" id="filtroNombre" placeholder="Ingresa el nombre" filtroNombre>
+  <input type="text" id="filtroID" placeholder="Ingresa el ID" filtroID>
   <table>
+
     <thead>
       <tr>
         <th>ID</th>
@@ -34,7 +35,37 @@
   </table>
 
   <script>
-    // REQUEST API USING FETCH
+    const searchInput = document.getElementById("filtroNombre"); //Get the search bar for nombre
+    const searchInputID = document.getElementById("filtroID");
+    let rows = []; //Save all data
+
+    //Search by Nombre
+    searchInput.addEventListener("input", (e) => {
+      const value = e.target.value.toLowerCase();
+
+      rows.forEach(row => { //scroll throught all data and filter all data with the text input
+        const nombreCell = row.querySelector("td:nth-child(2)"); //Choose which table to search, in this case "nombre" is in the second column
+        const nombre = nombreCell.textContent.toLowerCase();
+        const isVisible = nombre.includes(value);
+
+        row.style.display = isVisible ? "" : "none"; // if input text = data show the data, else dont show anything
+      });
+    });
+
+    //Search by ID
+    searchInputID.addEventListener("input", (e) => {
+      const value = e.target.value.toLowerCase();
+
+      rows.forEach(row => {
+        const idCell = row.querySelector("td:nth-child(1)");
+        const id = idCell.textContent.toLowerCase();
+        const isVisible = id.includes(value);
+
+        row.style.display = isVisible ? "" : "none";
+      });
+    });
+
+    //Fetch Request the data
     fetch('/api/uen')
       .then(response => response.json())
       .then(data => {
@@ -52,10 +83,12 @@
           row.appendChild(nombreCell);
 
           dataContainer.appendChild(row);
+          rows.push(row);
         });
       })
       .catch(error => console.error('Error al obtener los datos de la API:', error));
   </script>
+
 
   <hr>
   
