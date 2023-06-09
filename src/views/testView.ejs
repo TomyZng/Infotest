@@ -2,22 +2,7 @@
 <html>
 <head>
   <title>Tabla de datos de la API</title>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    
-    th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-    
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="../styles/test.css">
 </head>
 <body>
 
@@ -29,79 +14,24 @@
       <tr>
         <th>ID</th>
         <th>Nombre</th>
+        <th>Acciones</th> <!-- New column for the delete button -->
       </tr>
     </thead>
     <tbody id="data"></tbody>
   </table>
 
-  <script>
-    const searchInput = document.getElementById("filtroNombre"); //Get the search bar for nombre
-    const searchInputID = document.getElementById("filtroID");
-    let rows = []; //Save all data
-
-    //Search by Nombre
-    searchInput.addEventListener("input", (e) => {
-      const value = e.target.value.toLowerCase();
-
-      rows.forEach(row => { //scroll throught all data and filter all data with the text input
-        const nombreCell = row.querySelector("td:nth-child(2)"); //Choose which table to search, in this case "nombre" is in the second column
-        const nombre = nombreCell.textContent.toLowerCase();
-        const isVisible = nombre.includes(value);
-
-        row.style.display = isVisible ? "" : "none"; // if input text = data show the data, else dont show anything
-      });
-    });
-
-    //Search by ID
-    searchInputID.addEventListener("input", (e) => {
-      const value = e.target.value.toLowerCase();
-
-      rows.forEach(row => {
-        const idCell = row.querySelector("td:nth-child(1)");
-        const id = idCell.textContent.toLowerCase();
-        const isVisible = id.includes(value);
-
-        row.style.display = isVisible ? "" : "none";
-      });
-    });
-
-    //Fetch Request the data
-    fetch('/api/uen')
-      .then(response => response.json())
-      .then(data => {
-        const dataContainer = document.getElementById("data");
-        
-        data.forEach(item => {
-          const row = document.createElement("tr");
-          const idCell = document.createElement("td");
-          const nombreCell = document.createElement("td");
-
-          idCell.textContent = item.id_uen;
-          nombreCell.textContent = item.nombre;
-
-          row.appendChild(idCell);
-          row.appendChild(nombreCell);
-
-          dataContainer.appendChild(row);
-          rows.push(row);
-        });
-      })
-      .catch(error => console.error('Error al obtener los datos de la API:', error));
-  </script>
-
-
+  <script src="../script.js"></script>
+  
   <hr>
   
-  <form id="orden" action="/testFilter" method="GET" class="form">
-    <select name="orden" id="orden">
+  <form id="ordenForm" action="/testFilter" method="GET" class="form">
+    <select name="orden" id="ordenSelect">
+        <option id="Opciones" value="Opciones">Opciones</option>
         <option id="ascendente" value="ascendente">Ascendente</option>
         <option id="descendente" value="descendente">Descendente</option>
     </select>
-    <button type="submit" value="submit" class="btn" >Filtrar</button>
+    <button type="submit" value="submit" class="btn-filtrar" >Filtrar</button>
 </form>
 
 </body>
 </html>
-
-
-    

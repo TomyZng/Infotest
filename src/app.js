@@ -18,5 +18,6 @@ app.use(bodyParser.json());//middleware for put/patch request
 //npm run app
 app.use(indexRoutes)
 app.use('/api', apiRoutes)
+app.use(express.static('src'));
 
 export default app;

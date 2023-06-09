@@ -2,22 +2,7 @@
 <html>
 <head>
   <title>Tabla de datos de la API</title>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    
-    th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-    
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="../styles/test.css">
 </head>
 <body>
 
@@ -29,13 +14,17 @@
       <tr>
         <th>ID</th>
         <th>Nombre</th>
+        <th>Acciones</th> <!-- delete button -->
       </tr>
     </thead>
     <tbody id="data">
       <% data.forEach(item => { %>
-        <tr>
+        <tr id="row-<%= item.id_uen %>"> <!--Unique value per row in reference of id_uen-->
           <td><%= item.id_uen %></td>
           <td><%= item.nombre %></td>
+          <td>
+            <button onclick="deleteRow('<%= item.id_uen %>')">Borrar</button>
+          </td>
         </tr>
       <% }); %>
     </tbody>
@@ -72,15 +61,33 @@
         row.style.display = isVisible ? "" : "none";
       });
     });
+
+    function deleteRow(id) {
+      // Send a DELETE request to the server with the row ID
+      fetch(`/api/uen/${id}`, { method: "DELETE" })
+        .then(response => {
+          if (response.ok) {
+            // Remove the row from the table if the deletion was successful
+            const row = document.getElementById(`row-${id}`);
+            row.remove();
+            location.reload();
+          }
+        })
+        .catch(error => console.error('Error al borrar los datos de la API:', error));
+    }
   </script>
+
+
 
   <form id="orden" action="/testFilter" method="GET" class="form">
     <select name="orden" id="orden">
+      <option id="Opciones" value="Opciones">Opciones</option>
         <option id="ascendente" value="ascendente">Ascendente</option>
         <option id="descendente" value="descendente">Descendente</option>
     </select>
-    <button type="submit" value="submit" class="btn" >Filtrar</button>
+    <button type="submit" value="submit" class="btn-filtrar" >Filtrar</button>
 </form>
+
 
 </body>
 </html>
