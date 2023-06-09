@@ -13,9 +13,8 @@ export const getUenOrder = async (req, res) => {
       } else if (orden === 'descendente') {
         query = 'SELECT * FROM UEN ORDER BY id_uen DESC'
       }
-
+      
       const [rows] = await pool.query(query)
-
       res.render('testFilter', { data: rows });
   
     } catch (e) {
