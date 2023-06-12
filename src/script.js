@@ -34,6 +34,33 @@ function handleNombreFilter(e, rows) { //e variable being event in this case sea
       })
       .catch(error => console.error(error));
   }
+
+  function updateUen(id, nombre) {
+    const data = {
+      nombre: nombre
+    };
+  
+    fetch(`/api/uen/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json" //Read data as json
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json()) //Send data as Json
+      .then(updatedUen => {
+        console.log(updatedUen); //Check input in console, testing
+        location.reload(); //Refresh per edit
+      })
+      .catch(error => console.error(error));
+  }
+  
+  function editRow(id) {
+    const newName = prompt("Ingrese el nuevo nombre:"); //prompt as a interface for test
+    if (newName) {
+      updateUen(id, newName);
+    }
+  }
   
   function fetchData() {
     const searchInputNombre = document.getElementById("filtroNombre");
@@ -60,6 +87,7 @@ function handleNombreFilter(e, rows) { //e variable being event in this case sea
           const idCell = document.createElement("td");
           const nombreCell = document.createElement("td");
           const actionsCell = document.createElement("td");
+          const editCell = document.createElement("td");
   
           idCell.textContent = item.id_uen;
           nombreCell.textContent = item.nombre;
@@ -71,13 +99,24 @@ function handleNombreFilter(e, rows) { //e variable being event in this case sea
             const id = this.getAttribute("data-id");
             deleteRow(id);
           });
+
+          const editButton = document.createElement("button");
+          editButton.textContent = "Edit";
+          editButton.setAttribute("data-id", item.id_uen);
+          editButton.addEventListener("click", function(){
+            const id = this.getAttribute("data-id");
+            editRow(id);
+          })
+
   
           actionsCell.appendChild(deleteButton);
+          editCell.appendChild(editButton);
   
           row.appendChild(idCell);
           row.appendChild(nombreCell);
           row.appendChild(actionsCell);
-  
+          row.appendChild(editCell);
+
           row.id = `row-${item.id_uen}`;
   
           dataContainer.appendChild(row);
