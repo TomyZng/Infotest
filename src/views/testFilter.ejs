@@ -64,7 +64,7 @@
 
     function deleteRow(id) {
       // Send a DELETE request to the server with the row ID
-      fetch(`/api/uen/${id}`, { method: "DELETE" })
+      fetch(`/api/v1/uen/${id}`, { method: "DELETE" })
         .then(response => {
           if (response.ok) {
             // Remove the row from the table if the deletion was successful
