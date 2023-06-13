@@ -23,7 +23,7 @@ function handleNombreFilter(e, rows) { //e variable being event in this case sea
   }
   
   function deleteRow(id) {
-    fetch(`/api/uen/${id}`, { method: "DELETE" })
+    fetch(`/api/v1/uen/${id}`, { method: "DELETE" })
       .then(response => {
         if (response.ok) {
           const row = document.getElementById(`row-${id}`);
@@ -40,7 +40,7 @@ function handleNombreFilter(e, rows) { //e variable being event in this case sea
       nombre: nombre
     };
   
-    fetch(`/api/uen/${id}`, {
+    fetch(`/api/v1/uen/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json" //Read data as json
@@ -75,7 +75,7 @@ function handleNombreFilter(e, rows) { //e variable being event in this case sea
       handleIDFilter(e, rows);
     });
   
-    fetch('/api/uen')
+    fetch('/api/v1/uen')
       .then(response => response.json())
       .then(data => {
         const dataContainer = document.getElementById("data");
