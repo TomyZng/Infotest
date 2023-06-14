@@ -8,7 +8,7 @@ router
     //Router Filters
     .get('/uen/:id_uen', getUenF)
     //Router Posts
-    .post('/post', postUen)
+    .post('/uen', postUen)
     //Router Patch
     .patch('/uen/:id_uen', updateUen)
     //Router Deletes
