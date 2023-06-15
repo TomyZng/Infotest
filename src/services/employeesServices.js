@@ -31,6 +31,55 @@ export const createEmployee = async (cod_empleado, id_posicion, id_equipo, id_es
     }
   };
   
+  export const updateEmployeeByID = async (cod_empleado, id_posicion, id_equipo, id_estado, nombre, apellido, edad, fecha_de_ingreso, genero_sigla) => {
+    const query = `
+      UPDATE Empleado SET 
+        id_posicion = IFNULL(?, id_posicion),
+        id_equipo = IFNULL(?, id_equipo),
+        id_estado = IFNULL(?, id_estado),
+        nombre = IFNULL(?, nombre),
+        apellido = IFNULL(?, apellido),
+        edad = IFNULL(?, edad),
+        fecha_de_ingreso = IFNULL(?, fecha_de_ingreso),
+        genero_sigla = IFNULL(?, genero_sigla),
+        fecha_eval_prueba = DATE_ADD(IFNULL(?, fecha_de_ingreso), INTERVAL 3 MONTH),
+        mes_vacacion = MONTHNAME(DATE_ADD(IFNULL(?, fecha_de_ingreso), INTERVAL 11 MONTH)),
+        fecha_inicio_vacaciones = DATE_ADD(IFNULL(?, fecha_de_ingreso), INTERVAL 11 MONTH),
+        fecha_final_vacaciones = DATE_ADD(IFNULL(?, fecha_de_ingreso), INTERVAL 12 MONTH)
+      WHERE cod_empleado = ?`;
+      
+    const values = [
+      id_posicion,
+      id_equipo,
+      id_estado,
+      nombre,
+      apellido,
+      edad,
+      fecha_de_ingreso,
+      genero_sigla,
+      fecha_de_ingreso,
+      fecha_de_ingreso,
+      fecha_de_ingreso,
+      fecha_de_ingreso,
+      cod_empleado
+    ];
+    
+    try {
+      const [result] = await pool.query(query, values);
+      if (result.affectedRows === 0) return null;
+      const employee = await getEmployeesDataById(cod_empleado);
+      return employee;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+  
+  export const deleteEmployeeById = async (cod_empleado) => {
+    const [result] = await pool.query('DELETE FROM Empleado WHERE cod_empleado = ?', [cod_empleado]);
+    if (result.affectedRows === 0) return false;
+    return true;
+  };
   
 
   
