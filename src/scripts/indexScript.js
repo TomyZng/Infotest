@@ -15,7 +15,7 @@ function postFormData(event) {
     const formData = new FormData(event.target);
     const nombre = formData.get("nombre");
 
-    fetch("/api/v1/post", {
+    fetch("/api/v1/uen", {
         method: "POST",
         headers: {
             "Content-Type": "application/json" //Read json data
