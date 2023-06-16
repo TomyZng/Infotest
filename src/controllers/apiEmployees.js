@@ -17,36 +17,36 @@ export const getEmpleados = async (req, res) => {
       const { cod_empleado } = req.params;
       const employee = await getEmployeesDataById(cod_empleado);
   
-      if (!cod_empleado) {
-        return res.status(404).json({
-          message: 'Empleado not found',
-        });
+      if (!employee) {
+        res.status(404).json({ message: `Employee with cod_empleado ${cod_empleado} not found` });
       }
       res.json(employee);
+      
     } catch (error) {
       console.log(error);
-      res.status(500).json({ error: 'Error al obtener los datos de Empleado' });
+      const errorMessage = error.message || `Employee with cod_empleado ${cod_empleado} not found`;
+      res.status(500).json({ error: errorMessage });
     }
   };
 
   export const postEmpleado = async (req, res) => {
     try {
-      const { cod_empleado, id_posicion, id_equipo, id_estado, nombre, apellido, edad, fecha_de_ingreso, genero_sigla } = req.body;
-      const employee = await createEmployee(cod_empleado, id_posicion, id_equipo, id_estado, nombre, apellido, edad, fecha_de_ingreso, genero_sigla);
+      const { cod_empleado, id_posicion, id_equipo, id_estado, nombre, apellido, edad, fecha_de_ingreso, genero_sigla, telefono } = req.body;
+      const employee = await createEmployee(cod_empleado, id_posicion, id_equipo, id_estado, nombre, apellido, edad, fecha_de_ingreso, genero_sigla, telefono);
       res.json(employee);
-
     } catch (error) {
       console.log(error);
-      res.status(500).json({ error: 'Error al crear Empleado' });
+      const errorMessage = error.sqlMessage || 'Error creating employee';
+      res.status(500).json({ error: errorMessage });
     }
   };
 
   export const updateEmpleado = async (req, res) => {
     const { cod_empleado } = req.params;
-    const { id_posicion, id_equipo, id_estado, nombre, apellido, edad, fecha_de_ingreso, genero_sigla } = req.body;
+    const { newCodEmpleado, id_posicion, id_equipo, id_estado, nombre, apellido, edad, fecha_de_ingreso, genero_sigla } = req.body;
   
     try {
-      const empleado = await updateEmployeeByID(cod_empleado, id_posicion, id_equipo, id_estado, nombre, apellido, edad, fecha_de_ingreso, genero_sigla);
+      const empleado = await updateEmployeeByID(cod_empleado, newCodEmpleado, id_posicion, id_equipo, id_estado, nombre, apellido, edad, fecha_de_ingreso, genero_sigla);
   
       if (!empleado) {
         return res.status(404).json({
@@ -56,7 +56,8 @@ export const getEmpleados = async (req, res) => {
       res.json(empleado);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ error: 'Error updating Empleado' });
+      const errorMessage = error.sqlMessage || 'Error updating employee';
+      res.status(500).json({ error: errorMessage });
     }
   };
   
@@ -71,12 +72,11 @@ export const getEmpleados = async (req, res) => {
           message: 'Employee not found',
         });
       }
-  
-      console.log(`Employee with cod_empleado ${cod_empleado} successfully deleted`);
-      res.sendStatus(204);
+      res.status(200).json({ message: `Employee with cod_empleado ${cod_empleado} successfully deleted` });
     } catch (error) {
       console.log(error);
-      res.status(500).json({ error: 'Error deleting Employee' });
+      const errorMessage = error.sqlMessage || 'Error deleting employee';
+      res.status(500).json({ error: errorMessage });
     }
   };
   
