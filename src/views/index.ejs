@@ -1,26 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>hello world</h1>
-
-    <form id="uen" method="POST" action="/api/v1/uen" class="form">
-        <input id="nombre" type="text" name="nombre" placeholder="nombre">
-        <button type="submit" class="btn">click</button>
-    </form>
-
-
-       <p id="message"></p>
-
-    <script src="../scripts/indexScript.js"></script>
-
-
-    <input type="button" onclick="location.href='/test';" value="Probar getUen" />
-
-</body>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap"
+    />
+  </head>
+  <body>
+    <div class="home">
+      <div class="sidebar2">
+        <div class="sidebar-inner"></div>
+        <div class="administracin-de-empleados-wrapper1">
+          <div class="administracin-de-empleados-container2">
+            <p class="administracin2">Administración</p>
+            <p class="blank-line4">&nbsp;</p>
+            <p class="administracin2">de</p>
+            <p class="administracin2">&nbsp;</p>
+            <p class="administracin2">empleados</p>
+          </div>
+        </div>
+        <b class="menu2">Menu</b>
+        
+        <div class="crear-container">
+          <a href="/" class="button home-button">Home</a>
+          <div class="empleados10">Empleados</div>
+          <a href="form" class="button crear-button">Crear</a>
+          <a href="listar.html" class="button listar-button">Listar</a>
+        </div>
+      </div>
+      <div class="infosgroup3">
+        <img class="image-1-icon2" alt="" src="../images/infosgroup.jpg" />
+      </div>
+      <div class="seguimiento-de-personal">Seguimiento de personal</div>
+    </div>
+  </body>
 </html>

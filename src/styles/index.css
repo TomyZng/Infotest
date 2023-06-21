@@ -1,0 +1,159 @@
+.sidebar-inner {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-chocolate);
+  }
+  .administracin2 {
+    margin: 0;
+  }
+  .blank-line4 {
+    margin: 0;
+    font-size: var(--font-size-6xl);
+  }
+  .administracin-de-empleados-container2 {
+    position: relative;
+    line-height: 20px;
+    text-transform: uppercase;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke: 1px #000;
+  }
+  .administracin-de-empleados-wrapper1 {
+    position: absolute;
+    top: 304px;
+    left: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .crear2,
+  .menu2 {
+    position: absolute;
+  }
+  .menu2 {
+    top: 495px;
+    left: 20px;
+    font-size: var(--font-size-61xl);
+    line-height: 20px;
+    text-transform: uppercase;
+    color: var(--gray-6);
+    -webkit-text-stroke: 1px #000;
+  }
+  .crear2 {
+    top: 67px;
+    left: 31px;
+    line-height: 24px;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  .empleados7 {
+    font-size: var(--font-size-36xl);
+    -webkit-text-stroke: 1px #000;
+  }
+  .empleados7,
+  .listar2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 24px;
+  }
+  .listar-frame {
+    position: absolute;
+    top: 136px;
+    left: 31px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    width: 155px;
+    height: 24px;
+    color: var(--gray-6);
+  }
+  .crear-container {
+    position: absolute;
+    top: 585px;
+    left: 8px;
+    width: 264px;
+    height: 160px;
+    font-size: var(--font-size-41xl);
+  }
+  .image-1-icon2,
+  .sidebar2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 2613px;
+  }
+  .image-1-icon2 {
+    height: 100%;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: cover;
+  }
+  .infosgroup3 {
+    position: absolute;
+    top: 74px;
+    left: 682px;
+    width: 577px;
+    height: 136px;
+  }
+  .seguimiento-de-personal {
+    position: absolute;
+    top: 303px;
+    left: 361px;
+    font-size: var(--font-size-61xl);
+    line-height: 24px;
+    color: #000;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke: 1px #000;
+  }
+  .home {
+    position: relative;
+    background-color: var(--color-aliceblue-100);
+    width: 100%;
+    height: 2276px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-11xl);
+    color: var(--white);
+    font-family: var(--font-alef);
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: var(--font-size-36xl);
+    text-decoration: none;
+    color: var(--gray-6);
+    -webkit-text-stroke: 1px #000;
+    background-color: var(--color-chocolate);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: var(--color-chocolate-hover);
+    color: var(--gray-8);
+  }
+  
+  .crear-button {
+    margin-bottom: 10px;
+  }
+  
+  .listar-button {
+    margin-top: 10px;
+  }
+  
+  .home-button{
+    margin-top: -50px;
+  }
+
+  
+  
