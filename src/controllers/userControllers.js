@@ -5,6 +5,8 @@ export const getIndex = (req,res) => res.render('index')
 
 export const getTest = (req,res) => res.render('testView')
 
+export const getForm = (req,res) => res.render('createEmployee')
+
 export const getUenOrder = async (req, res) => {
   const { orden } = req.query;
   try {
