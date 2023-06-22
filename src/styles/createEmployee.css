@@ -182,26 +182,31 @@
     overflow: hidden;
     flex-shrink: 0;
   }
-  .clip-list5,
-  .dropdown-list7 {
-    position: absolute;
-    overflow: hidden;
+
+  .dropdown-field {
+    width: 80px; /* Ajusta el valor según tus necesidades */
   }
-  .dropdown-list7 {
-    width: 90.91%;
-    top: 68px;
-    right: 4.55%;
-    left: 4.55%;
-    border-radius: var(--br-5xs);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-    height: 1px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--gap-12xs);
-    opacity: 0;
+  
+  .dropdown-field option {
+    width: 100%; /* Hace que las opciones se expandan al ancho del campo de selección */
   }
+  
+  .dropdown-field2 {
+    width: 200px; /* Ajusta el valor según tus necesidades */
+  }
+  
+  .dropdown-field option {
+    width: 100%; /* Hace que las opciones se expandan al ancho del campo de selección */
+  }
+
+  .dropdown-field3 {
+    width: 20 0px; /* Ajusta el valor según tus necesidades */
+  }
+  
+  .dropdown-field option {
+    width: 100%; /* Hace que las opciones se expandan al ancho del campo de selección */
+  }
+  
   .clip-list5 {
     height: 90.31%;
     width: 100%;
@@ -364,7 +369,16 @@
   .crear-empleado {
     position: relative;
     line-height: 24px;
+    background-color: var(--color-chocolate);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 36px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
+
   .crear-empleado-wrapper {
     position: absolute;
     top: 706.08px;
@@ -474,17 +488,26 @@
     position: absolute;
     top: 330px;
     left: 100px;
-    width: 531.42px;
+    width: 200.42px;
     height: 138.52px;
   }
 
   .group-parent9 {
     position: absolute;
     top: 330px;
-    left: 200px;
-    width: 531.42px;
+    left: 330px;
+    width: 80.42px;
     height: 138.52px;
   }
+
+  .group-parent10 {
+    position: absolute;
+    top: 330px;
+    left: 450px;
+    width: 80.42px;
+    height: 138.52px;
+  }
+
 
   .group-parent {
     position: absolute;
@@ -535,7 +558,7 @@
     position: absolute;
     top: 30px;
     left: 0;
-    width: 277px;
+    width: 100.14px;
     height: 83px;
   }
 
@@ -543,7 +566,7 @@
     position: absolute;
     top: 30px;
     left: 0px;
-    width: 277px;
+    width: 200px;
     height: 83px;
   }
 
@@ -551,9 +574,18 @@
     position: absolute;
     top: 30px;
     left: 0px;
-    width: 277px;
+    width: 80px;
     height: 83px;
   }
+
+  .rectangle-parent19 {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    width: 80px;
+    height: 83px;
+  }
+  
   .empleados10,
   .frame-group {
     position: absolute;
@@ -752,5 +784,25 @@
   }
 
   .input-field::placeholder {
+    color: #999;
+  }
+
+
+  .input-fieldFecha {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  .input-fieldFecha:focus {
+    outline: none;
+    border-color: #0066cc;
+    box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
+  }
+
+  .input-fieldFecha::placeholder {
     color: #999;
   }

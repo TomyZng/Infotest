@@ -3,12 +3,18 @@ import { getUenData, getUenById, createUen, updateUenById, deleteUenById } from 
 export const getUen = async (req, res) => {
   try {
     const data = await getUenData();
-    res.json(data);
+
+    // Transformar los datos en el formato adecuado para el HTML
+    const options = data.map(uen => ({ value: uen.id, label: uen.nombre }));
+
+    res.json(options);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Error al obtener los datos de UEN' });
   }
 };
+
+
 
 export const getUenF = async (req, res) => {
   try {
