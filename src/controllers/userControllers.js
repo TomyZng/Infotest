@@ -7,6 +7,8 @@ export const getTest = (req,res) => res.render('testView')
 
 export const getForm = (req,res) => res.render('createEmployee')
 
+export const getList = (req,res) => res.render('listEmployee')
+
 export const getUenOrder = async (req, res) => {
   const { orden } = req.query;
   try {
