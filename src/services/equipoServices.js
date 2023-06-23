@@ -1,7 +1,7 @@
 import { pool } from "../database/db.js";
 
 export const getEquipoData = async () => {
-  const [rows] = await pool.query("SELECT * FROM Equipo");
+  const [rows] = await pool.query("SELECT * FROM Equipo ORDER BY nombre ASC");
   return rows;
 };
 

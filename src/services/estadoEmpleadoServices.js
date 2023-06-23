@@ -1,7 +1,7 @@
 import { pool } from "../database/db.js";
 
 export const getEstadoData = async () => {
-  const [rows] = await pool.query("SELECT * FROM Estado_Empleado");
+  const [rows] = await pool.query("SELECT * FROM Estado_Empleado ORDER BY nombre ASC");
   return rows;
 };
 
