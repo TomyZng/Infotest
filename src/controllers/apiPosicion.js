@@ -1,4 +1,4 @@
-import { getPosicionData, getPosicionDatabyName } from "../services/posicionServices.js";
+import { getPosicionData, getPosicionDataById, getPosicionDatabyName } from "../services/posicionServices.js";
 
 
 export const getPosicion = async (req,res) => {
@@ -33,3 +33,23 @@ export const getPosicionbyName = async (req, res) => {
       res.status(500).json({ error: errorMessage });
     }
   };
+
+
+
+  export const getPosicionById = async (req, res) => {
+    try {
+      const { id_posicion } = req.params;
+      const posicion = await getPosicionDataById(id_posicion);
+  
+      if (!posicion) {
+        res.status(404).json({ message: `Posicion with id_posicion ${id_posicion} not found` });
+      } else {
+        res.json(posicion);
+      }
+    } catch (error) {
+      console.log(error);
+      const errorMessage = error.message || `Posicion with id_posicion ${id_posicion} not found`;
+      res.status(500).json({ error: errorMessage });
+    }
+  };
+  
