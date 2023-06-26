@@ -9,6 +9,8 @@ export const getForm = (req,res) => res.render('createEmployee')
 
 export const getList = (req,res) => res.render('listEmployee')
 
+export const getEdit = (req,res) => res.render('editEmployee')
+
 export const getUenOrder = async (req, res) => {
   const { orden } = req.query;
   try {

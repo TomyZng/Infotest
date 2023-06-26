@@ -5,7 +5,7 @@ const router = Router()
 
 router 
     .get('/posicion', getPosicion)
-    .get('/posicion/:id_posicion', getPosicionById)
     .get('/posicion/:nombre', getPosicionbyName)
+    .get('/posicion/:id_posicion', getPosicionById)
 
 export default router

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getForm, getIndex, getList, getTest, getUenOrder } from "../../controllers/userControllers.js";
+import { getEdit, getForm, getIndex, getList, getTest, getUenOrder } from "../../controllers/userControllers.js";
 const router = Router()
 
 
@@ -9,6 +9,7 @@ router
     .get('/testFilter', getUenOrder)
     .get('/form', getForm)
     .get('/list', getList)
+    .get('/edit', getEdit)
    
 
 export default router

@@ -73,9 +73,9 @@ const postEmpleado = async () => {
     const posicionResponse = await fetch(`/api/v1/posicion/${posicionNombre}`);
     const posicionData = await posicionResponse.json();
     const estadoResponse = await fetch(`/api/v1/estadoE/${estadoNombre}`);
-  const estadoData = await estadoResponse.json(); 
-  const equipoResponse = await fetch(`/api/v1/equipo/${equipoNombre}`);
-  const equipoData = await equipoResponse.json();
+    const estadoData = await estadoResponse.json(); 
+    const equipoResponse = await fetch(`/api/v1/equipo/${equipoNombre}`);
+    const equipoData = await equipoResponse.json();
 
     // Verificar si se obtuvo el ID de la posición correctamente
 
