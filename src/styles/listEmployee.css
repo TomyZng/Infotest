@@ -559,3 +559,44 @@
   .home-button{
     margin-top:-50px;
   }
+
+.editar-button,
+.borrar-button {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: var(--color-chocolate);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.editar-button:hover,
+.borrar-button:hover {
+  background-color: #0056b3;
+}
+
+#exportBtn {
+  position: absolute;
+  top: -30%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-chocolate);
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#exportBtn:hover {
+  background-color: #6c4b1c;
+}
+
+#exportBtn:active {
+  background-color: #472f12;
+}

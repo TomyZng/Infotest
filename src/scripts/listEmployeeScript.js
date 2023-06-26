@@ -23,6 +23,91 @@ function handleNombreFilter() {
   });
 }
 
+function updateEmpleado(cod_empleado, nombre) {
+  const data = {
+    nombre: nombre
+  };
+
+  fetch(`/api/v1/empleado/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .then(updatedEmpleado => {
+      console.log(updatedEmpleado);
+      location.reload();
+    })
+    .catch(error => console.error(error));
+}
+
+function deleteRow(cod_empleado) {
+  const confirmation = confirm("¿Estás seguro de que deseas borrar este registro?");
+
+  if (confirmation) {
+    fetch(`/api/v1/empleado/${cod_empleado}`, { method: "DELETE" })
+      .then(response => {
+        if (response.ok) {
+          const row = document.getElementById(`row-${cod_empleado}`);
+          row.remove();
+        } else {
+          throw new Error(`Error al borrar los datos de la API: ${response.status}`);
+        }
+      })
+      .catch(error => console.error(error));
+  }
+}
+
+
+function addDeleteEventListeners() {
+  const table = document.querySelector('.table tbody');
+
+  table.addEventListener('click', event => {
+    if (event.target.classList.contains('borrar-button')) {
+      const row = event.target.closest('tr');
+      const cod_empleado = row.getAttribute('id').split('-')[1];
+      deleteRow(cod_empleado);
+    }
+  });
+}
+
+
+function exportToCSV() {
+  const table = document.querySelector('.table');
+  const rows = table.querySelectorAll('tr');
+  const headers = table.querySelectorAll('th');
+  const csvData = [];
+
+  // Agregar encabezados al arreglo CSV
+  const headerRow = Array.from(headers).map(header => header.textContent);
+  csvData.push(headerRow);
+
+  // Agregar filas de datos al arreglo CSV
+  rows.forEach(row => {
+    const rowData = [];
+    const cells = row.querySelectorAll('td');
+    cells.forEach(cell => rowData.push(cell.textContent));
+    csvData.push(rowData);
+  });
+
+  // Generar contenido CSV
+  const csvContent = csvData.map(row => row.join(',')).join('\n');
+  const encodedCSVContent = encodeURI(csvContent);
+
+  // Crear un enlace de descarga
+  const link = document.createElement('a');
+  link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodedCSVContent);
+  link.setAttribute('download', 'data.csv');
+  link.style.display = 'none';
+
+  // Agregar el enlace al documento y hacer clic en él
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 function fetchData() {
   const table = document.querySelector('.table tbody');
 
@@ -91,6 +176,7 @@ function fetchData() {
                   // Iterate through the employee data
                   data.forEach(empleado => {
                     const row = document.createElement('tr');
+                    row.setAttribute('id', `row-${empleado.cod_empleado}`);
 
                     const codigoCell = document.createElement('td');
                     codigoCell.textContent = empleado.cod_empleado;
@@ -152,16 +238,17 @@ function fetchData() {
                     row.appendChild(fechaFinalVacacionesCell);
 
                     const editarCell = document.createElement('td');
-                    editarCell.innerHTML = '<a href="#">Editar</a>';
+                    editarCell.innerHTML = `<a href="/edit?cod_empleado=${empleado.cod_empleado}" class="editar-button">Editar</a>`;
                     row.appendChild(editarCell);
 
                     const borrarCell = document.createElement('td');
-                    borrarCell.innerHTML = '<a href="#">Borrar</a>';
+                    borrarCell.innerHTML = '<a href="#" class="borrar-button">Borrar</a>';
                     row.appendChild(borrarCell);
 
                     table.appendChild(row);
                   });
 
+                  addDeleteEventListeners();
                   handleNombreFilter();
                 })
                 .catch(error => {
@@ -181,4 +268,10 @@ function fetchData() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', fetchData);
+document.addEventListener('DOMContentLoaded', function() {
+  fetchData();
+  const exportBtn = document.getElementById('exportBtn');
+  if (exportBtn) {
+    exportBtn.addEventListener('click', exportToCSV);
+  }
+});

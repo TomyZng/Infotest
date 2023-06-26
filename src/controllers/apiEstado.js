@@ -1,4 +1,4 @@
-import { getEstadoData, getEstadoDatabyName } from "../services/estadoEmpleadoServices.js";
+import { getEstadoData, getEstadoDataById, getEstadoDatabyName } from "../services/estadoEmpleadoServices.js";
 
 
 export const getEstadoE = async (req,res) => {
@@ -32,6 +32,23 @@ export const getEstadobyName = async (req, res) => {
     } catch (error) {
       console.log(error);
       const errorMessage = error.message || `estado with nombre ${nombre} not found`;
+      res.status(500).json({ error: errorMessage });
+    }
+  };
+
+  export const getEstadoById = async (req, res) => {
+    try {
+      const { id_estado } = req.params;
+      const estado = await getEstadoDataById(id_estado);
+  
+      if (!estado) {
+        res.status(404).json({ message: `estado with id_estado ${id_estado} not found` });
+      }
+      res.json(estado);
+      
+    } catch (error) {
+      console.log(error);
+      const errorMessage = error.message || `estado with id_estado ${id_estado} not found`;
       res.status(500).json({ error: errorMessage });
     }
   };

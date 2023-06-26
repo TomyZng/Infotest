@@ -1,4 +1,4 @@
-import { getEquipoData, getEquipoDatabyName } from "../services/equipoServices.js";
+import { getEquipoData, getEquipoDataById, getEquipoDatabyName } from "../services/equipoServices.js";
 
 
 export const getEquipo = async (req,res) => {
@@ -14,6 +14,23 @@ export const getEquipo = async (req,res) => {
         res.status(500).json({ error: 'Error al obtener los datos de equipo' });
       }
 }
+
+export const getEquipoById = async (req, res) => {
+  try {
+    const { id_equipo } = req.params;
+    const equipo = await getEquipoDataById(id_equipo);
+
+    if (!equipo) {
+      res.status(404).json({ message: `equipo with id_equipo ${id_equipo} not found` });
+    }
+    res.json(equipo);
+    
+  } catch (error) {
+    console.log(error);
+    const errorMessage = error.message || `equipo with id_equipo ${id_equipo} not found`;
+    res.status(500).json({ error: errorMessage });
+  }
+};
 
 
 export const getEquipobyName = async (req, res) => {
