@@ -43,16 +43,16 @@ export const getEmpleados = async (req, res) => {
 
   export const updateEmpleado = async (req, res) => {
     const { cod_empleado } = req.params;
-    const { newCodEmpleado, id_posicion, id_equipo, id_estado, nombre, apellido, edad, fecha_de_ingreso, genero_sigla } = req.body;
+    const { newCodEmpleado, id_posicion, id_equipo, id_estado, nombre, apellido, edad, fecha_de_ingreso, genero_sigla, telefono } = req.body;
   
     try {
-      const empleado = await updateEmployeeByID(cod_empleado, newCodEmpleado, id_posicion, id_equipo, id_estado, nombre, apellido, edad, fecha_de_ingreso, genero_sigla);
+      const empleado = await updateEmployeeByID(cod_empleado, newCodEmpleado, id_posicion, id_equipo, id_estado, nombre, apellido, edad, fecha_de_ingreso, genero_sigla, telefono);
   
       if (!empleado) {
         return res.status(404).json({
           message: 'Empleado not found',
         });
-      } 
+      }
       res.json(empleado);
     } catch (error) {
       console.log(error);
@@ -60,6 +60,7 @@ export const getEmpleados = async (req, res) => {
       res.status(500).json({ error: errorMessage });
     }
   };
+  
   
   export const deleteEmpleado = async (req, res) => {
     const { cod_empleado } = req.params;

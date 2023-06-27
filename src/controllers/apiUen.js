@@ -1,5 +1,6 @@
 import { getUenData, getUenById, createUen, updateUenById, deleteUenById } from "../services/uenServices.js";
 
+//Api for testing
 export const getUen = async (req, res) => {
   try {
     const data = await getUenData();
